@@ -106,7 +106,8 @@ export default class {
             const insertDoctors = `INSERT INTO doctors (name, phone, img_src) 
                 VALUES 
                     ('Jane Doe', '(647) 123 5678', 'jane.jpg'),
-                    ('Peter Wong', '(647) 123 5679', 'peter.jpg')
+                    ('Peter Wong', '(647) 123 5679', 'peter.jpg'),
+                    ('James Smith', '(647) 123 5670', 'james.jpg')
             `;
             db.run(insertDoctors);
 
@@ -116,7 +117,7 @@ export default class {
                     ('patient@gmail.com', 'password', 'John', 'Smith', 170, 1)`;
             db.run(insertUsers);
             console.log("insert users done")
-            
+
             const insertAppointments = `INSERT INTO appointments (date, user_id,
                 doctor_id) 
                 VALUES 

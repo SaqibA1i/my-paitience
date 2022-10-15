@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 const dotenv = require('dotenv');
 const cors = require("cors");
+const bodyParser = require('body-parser');
 
 import dao from './repositories/dao';
 import routes from './routes/routes';
@@ -16,6 +17,9 @@ app.use(
     exposedHeaders: ["set-cookie"]
   })
 );
+
+app.use(bodyParser.json());
+
 app.get("/", (req: Request, res: Response, next) => {
   res.json({ "message": "Ok" });
 })
