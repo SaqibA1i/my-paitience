@@ -1,5 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 const dotenv = require('dotenv');
+const cors = require("cors");
+
 import dao from './repositories/dao';
 import routes from './routes/routes';
 
@@ -7,7 +9,13 @@ dotenv.config();
 
 const app: Express = express();
 const port = 8000;
-
+app.use(
+  cors({
+    origin: [process.env.client, "http://localhost:3000"],
+    credentials: true,
+    exposedHeaders: ["set-cookie"]
+  })
+);
 app.get("/", (req: Request, res: Response, next) => {
   res.json({ "message": "Ok" });
 })
