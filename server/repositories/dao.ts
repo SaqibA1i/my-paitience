@@ -58,7 +58,8 @@ export default class {
             const createPrescriptionTable = `CREATE TABLE IF NOT EXISTS 
                 prescriptions (
                     prescription_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                    start_date DATE,
+                    medication TEXT,
+                    time TEXT,
                     user_id INTEGER,
                     doctor_id INTEGER,
                     FOREIGN KEY (user_id) REFERENCES users(user_id),
@@ -69,7 +70,7 @@ export default class {
                 cholesterol (
                     cholesterol_id INTEGER PRIMARY KEY AUTOINCREMENT, 
                     level INTEGER,
-                    date DATE,
+                    date TIME,
                     user_id INTEGER,
                     FOREIGN KEY (user_id) REFERENCES users(user_id)
                 )`;
@@ -126,6 +127,16 @@ export default class {
                     
             `;
             db.run(insertAppointments);
+
+            const insertPrescriptions = `INSERT INTO prescriptions (medication,
+                time, user_id, doctor_id) 
+                VALUES 
+                    ('Lexapro', '2022-10-14 10:00:00.000', '1', '1'),
+                    ('Amoxicillin', '2022-10-14 10:00:00.000', '1', '1'),
+                    ('Amoxicillin', '2022-10-14 18:00:00.000', '1', '1')
+                    
+            `;
+            db.run(insertPrescriptions);
         })
     }
 

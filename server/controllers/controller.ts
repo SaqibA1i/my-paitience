@@ -139,6 +139,72 @@ export default class {
             console.log(err);
         }
     }
+
+    static async getPrescriptionbyUserID(req: Request, res: Response, next: Function) {
+        try {
+            console.log("get prescription (byUserID) called");
+            console.log(req.query);
+            
+            console.log("finding prescriptions");
+            let prescriptions = Object();
+            let user_id = req.query.user_id;
+            if (typeof user_id == "string")
+            {
+                try {
+                    prescriptions = await dao.all(`SELECT DISTINCT
+                                            prescriptions.medication as medication,
+                                            time(prescriptions.time) as time,
+                                            doctors.name as doctor_name
+                                        FROM prescriptions, doctors
+                                        WHERE prescriptions.user_id = ? AND
+                                            prescriptions.doctor_id = doctors.doctor_id
+                                        `, 
+                                        [user_id]);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            if (!prescriptions) {
+                console.log("no prescriptions found");
+                return res.status(404).send(prescriptions);
+            }
+            
+            console.log(typeof prescriptions);
+            console.log(prescriptions);
+
+            let final_prescriptions:any = [];
+
+            for (const prescription of prescriptions) {
+                console.log(prescription);
+                let appended = 0;
+                for (const final_prescription of final_prescriptions) {
+                    console.log(typeof final_prescription);
+                    if (prescription.medication == final_prescription.medication) {
+                        console.log(final_prescription);
+                        final_prescription.time.push(prescription.time);
+                        appended = 1;
+                    }
+                }
+                if (!appended) {
+                    let arr:any = [];
+                    arr.push(prescription.time);
+                    let obj = {medication: prescription.medication,
+                        time: arr,
+                        doctor_name: prescription.doctor_name
+                        };
+                    final_prescriptions.push(obj);
+                }
+            }
+            
+            let data = {"prescriptions": final_prescriptions};
+            console.log("sending data");
+            console.log(data);
+            res.json(data);
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
     
 }
 
