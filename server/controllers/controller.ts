@@ -100,6 +100,45 @@ export default class {
         }
         res.sendStatus(200);
     }
+
+    static async getDoctorsFromAppts(req: Request, res: Response, next: Function) {
+        try {
+            console.log("get doctor (byUserID) called");
+            console.log(req.query);
+            
+            console.log("finding doctors from appointments");
+            let doctors;
+            let user_id = req.query.user_id;
+            if (typeof user_id == "string")
+            {
+                try {
+                    doctors = await dao.all(`SELECT 
+                                            doctors.name, 
+                                            doctors.phone, 
+                                            doctors.img_src 
+                                        FROM appointments, users, doctors
+                                        WHERE users.user_id = ? AND
+                                            appointments.doctor_id = doctors.doctor_id
+                                        `, 
+                                        [user_id]);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            if (!doctors) {
+                console.log("no doctors found");
+                return res.status(404).send(doctors);
+            }
+            
+            let data = {"doctors": doctors};
+            console.log("sending data");
+            console.log(data)
+            res.json(data);
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
     
 }
 
