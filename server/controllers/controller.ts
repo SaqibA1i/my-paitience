@@ -112,7 +112,7 @@ export default class {
             if (typeof user_id == "string")
             {
                 try {
-                    doctors = await dao.all(`SELECT 
+                    doctors = await dao.all(`SELECT DISTINCT
                                             doctors.name, 
                                             doctors.phone, 
                                             doctors.img_src 
