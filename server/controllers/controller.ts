@@ -154,6 +154,7 @@ export default class {
                     prescriptions = await dao.all(`SELECT DISTINCT
                                             prescriptions.medication as medication,
                                             time(prescriptions.time) as time,
+                                            prescriptions.instructions,
                                             doctors.name as doctor_name
                                         FROM prescriptions, doctors
                                         WHERE prescriptions.user_id = ? AND
@@ -190,6 +191,7 @@ export default class {
                     arr.push(prescription.time);
                     let obj = {medication: prescription.medication,
                         time: arr,
+                        instructions: prescription.instructions,
                         doctor_name: prescription.doctor_name
                         };
                     final_prescriptions.push(obj);

@@ -60,6 +60,7 @@ export default class {
                     prescription_id INTEGER PRIMARY KEY AUTOINCREMENT, 
                     medication TEXT,
                     time TEXT,
+                    instructions TEXT,
                     user_id INTEGER,
                     doctor_id INTEGER,
                     FOREIGN KEY (user_id) REFERENCES users(user_id),
@@ -129,11 +130,12 @@ export default class {
             db.run(insertAppointments);
 
             const insertPrescriptions = `INSERT INTO prescriptions (medication,
-                time, user_id, doctor_id) 
+                time, instructions, user_id, doctor_id) 
                 VALUES 
-                    ('Lexapro', '2022-10-14 10:00:00.000', '1', '1'),
-                    ('Amoxicillin', '2022-10-14 10:00:00.000', '1', '1'),
-                    ('Amoxicillin', '2022-10-14 18:00:00.000', '1', '1')
+                    ('Lexapro', '2022-10-14 10:00:00.000', '10mg once daily', '1', '1'),
+                    ('Amoxicillin', '2022-10-14 09:00:00.000', '500mg thrice daily', '1', '1'),
+                    ('Amoxicillin', '2022-10-14 15:00:00.000', '500mg thrice daily', '1', '1'),
+                    ('Amoxicillin', '2022-10-14 21:00:00.000', '500mg thrice daily', '1', '1')
                     
             `;
             db.run(insertPrescriptions);
