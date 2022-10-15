@@ -3,6 +3,28 @@ const sqlite3 = sqlite.verbose();
 const db = new sqlite3.Database('./db/sqlite.db');
 
 export default class {
+    static cleanDatabase() {
+        db.serialize(function() {
+            // Drop Tables
+            const dropDoctorsTable = "DROP TABLE IF EXISTS doctors";
+            db.run(dropDoctorsTable);
+            const dropUsersTable = "DROP TABLE IF EXISTS users";
+            db.run(dropUsersTable);
+            const dropAppointmentsTable = "DROP TABLE IF EXISTS appointments";
+            db.run(dropAppointmentsTable);
+            const dropPrescriptionsTable = "DROP TABLE IF EXISTS prescriptions";
+            db.run(dropPrescriptionsTable);
+            const dropCholesterolTable = "DROP TABLE IF EXISTS cholesterol";
+            db.run(dropCholesterolTable);
+            const dropBloodPressureTable = "DROP TABLE IF EXISTS blood_pressure";
+            db.run(dropBloodPressureTable);
+            const dropBloodSugarTable = "DROP TABLE IF EXISTS blood_sugar";
+            db.run(dropBloodSugarTable);
+            const dropWeightTable = "DROP TABLE IF EXISTS weight";
+            db.run(dropWeightTable);
+        })
+    }
+
     static setupDbForDev() {
         db.serialize(function() {
             // Drop Tables
@@ -105,6 +127,12 @@ export default class {
             )`;
             db.run(createWeightTable);
 
+            
+        })
+    }
+
+    static insertItems() {
+        db.serialize(function() {
             const insertDoctors = `INSERT INTO doctors (name, phone, img_src) 
                 VALUES 
                     ('Jane Doe', '(647) 123 5678', 'jane.jpg'),
@@ -139,6 +167,76 @@ export default class {
                     
             `;
             db.run(insertPrescriptions);
+
+            const insertCholesterol = `INSERT INTO cholesterol (level,
+                date, user_id) 
+                VALUES 
+                    ('3.4', '2022-10-01 10:00:00.000', '1'),
+                    ('3.4', '2022-10-02 09:00:00.000', '1'),
+                    ('3.6', '2022-10-04 15:00:00.000', '1'),
+                    ('3.6', '2022-10-05 10:00:00.000', '1'),
+                    ('3.4', '2022-10-06 09:00:00.000', '1'),
+                    ('4.2', '2022-10-07 15:00:00.000', '1'),
+                    ('4.0', '2022-10-08 10:00:00.000', '1'),
+                    ('4.4', '2022-10-11 09:00:00.000', '1'),
+                    ('5.6', '2022-10-13 15:00:00.000', '1'),
+                    ('6.0', '2022-10-15 21:00:00.000', '1')
+                    
+            `;
+            db.run(insertCholesterol);
+
+            const insertBloodPressure = `INSERT INTO blood_pressure (systolic,
+                diastolic, date, user_id) 
+                VALUES 
+                    ('121', '62',  '2022-10-01 10:00:00.000', '1'),
+                    ('125', '72', '2022-10-02 09:00:00.000', '1'),
+                    ('113', '64', '2022-10-04 15:00:00.000', '1'),
+                    ('102', '58', '2022-10-05 10:00:00.000', '1'),
+                    ('130', '70', '2022-10-06 09:00:00.000', '1'),
+                    ('135', '72', '2022-10-07 15:00:00.000', '1'),
+                    ('139', '75', '2022-10-08 10:00:00.000', '1'),
+                    ('132', '72', '2022-10-11 09:00:00.000', '1'),
+                    ('142', '80', '2022-10-13 15:00:00.000', '1'),
+                    ('141', '79', '2022-10-15 21:00:00.000', '1')
+                    
+            `;
+            db.run(insertBloodPressure);
+
+            const insertBloodSugar = `INSERT INTO blood_sugar (level,
+                date, user_id) 
+                VALUES 
+                    ('50', '2022-10-01 10:00:00.000', '1'),
+                    ('60', '2022-10-02 09:00:00.000', '1'),
+                    ('55', '2022-10-04 15:00:00.000', '1'),
+                    ('57', '2022-10-05 10:00:00.000', '1'),
+                    ('55', '2022-10-06 09:00:00.000', '1'),
+                    ('62', '2022-10-07 15:00:00.000', '1'),
+                    ('60', '2022-10-08 10:00:00.000', '1'),
+                    ('66', '2022-10-11 09:00:00.000', '1'),
+                    ('57', '2022-10-13 15:00:00.000', '1'),
+                    ('55', '2022-10-15 21:00:00.000', '1')
+                    
+            `;
+            db.run(insertBloodSugar);
+
+            const insertWeight = `INSERT INTO weight (level,
+                date, user_id) 
+                VALUES 
+                    ('70.2', '2022-10-01 10:00:00.000', '1'),
+                    ('71.2', '2022-10-02 09:00:00.000', '1'),
+                    ('69.0', '2022-10-04 15:00:00.000', '1'),
+                    ('69.2', '2022-10-05 10:00:00.000', '1'),
+                    ('72.1', '2022-10-06 09:00:00.000', '1'),
+                    ('70.7', '2022-10-07 15:00:00.000', '1'),
+                    ('69.9', '2022-10-08 10:00:00.000', '1'),
+                    ('72.2', '2022-10-11 09:00:00.000', '1'),
+                    ('72.6', '2022-10-13 15:00:00.000', '1'),
+                    ('72.9', '2022-10-15 21:00:00.000', '1')
+                    
+            `;
+            db.run(insertWeight);
+
+            
         })
     }
 
