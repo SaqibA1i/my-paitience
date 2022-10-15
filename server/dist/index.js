@@ -7,10 +7,14 @@ const express_1 = __importDefault(require("express"));
 const dotenv = require('dotenv');
 dotenv.config();
 const app = (0, express_1.default)();
-const port = process.env.PORT;
-app.get('/', (req, res) => {
-    res.send('Express + TypeScript Server');
+const port = 8000;
+app.get("/", (req, res, next) => {
+    res.json({ "message": "Ok" });
 });
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
+});
+// Default response for any other request
+app.use(function (req, res) {
+    res.status(404);
 });
