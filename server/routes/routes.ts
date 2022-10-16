@@ -1,11 +1,14 @@
-import Controller from '../controllers/controller';
+import homeController from '../controllers/home.controller';
 import appointmentController from '../controllers/appointment.controller';
 import prescriptionController from '../controllers/prescription.controller';
+import monitoringController from '../controllers/monitoring.controller';
 import * as express from 'express';
+
+
 const router = express.Router();
 
 //Main Routes
-router.get("/home", Controller.getHomebyUserID);
+router.get("/home", homeController.getDoctorbyUserID);
 
 // Appointment routes
 router.get("/appt", appointmentController.getAppointmentbyUserID);
@@ -19,7 +22,7 @@ router.post("/prescriptions/add", prescriptionController.addPrescription);
 router.post("/prescriptions/delete", prescriptionController.deletePrescription);
 
 // Montitoring Routes
-router.get("/monitoring", Controller.getMonitoringbyUserID);
+router.get("/monitoring", monitoringController.getMonitoringbyUserID);
 
 
 export default router;

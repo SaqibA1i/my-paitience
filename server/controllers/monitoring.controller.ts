@@ -1,69 +1,24 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import dao from "../repositories/dao";
-import dt from "../utils/dateTime";
-
-
 
 export default class {
-    
-    static async getHomebyUserID(req: Request, res: Response, next: Function) {
-        try {
-            console.log("gethome (byUserID) called");
-            console.log(req.query);
-            
-            console.log("finding doctor");
-            let doctor;
-            let user_id = req.query.user_id;
-            if (typeof user_id == "string")
-            {
-                try {
-                    doctor = await dao.get(`SELECT 
-                                            doctors.doctor_id, 
-                                            doctors.name, 
-                                            doctors.phone, 
-                                            doctors.img_src 
-                                        FROM doctors, users 
-                                        WHERE user_id = ?`, 
-                                        [user_id]);
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-            if (!doctor) {
-                console.log("no doctor found");
-                return res.status(404).send(doctor);
-            }
-            
-            let data = {"doctor": doctor};
-            console.log("sending data");
-            console.log(data)
-            res.json(data);
-        }
-        catch (err) {
-            console.log(err);
-        }
-        
-    }
-    
-
     static async getMonitoringbyUserID(req: Request, res: Response, next: Function) {
         try {
             console.log("get monitoring (byUserID) called");
             console.log(req.query);
-            
+
             console.log("finding monitoring data");
             let cholesterol = Object();
             let user_id = req.query.user_id;
-            if (typeof user_id == "string")
-            {
+            if (typeof user_id == "string") {
                 try {
                     cholesterol = await dao.all(`
                                         SELECT
                                             cholesterol.level as level,
                                             date(cholesterol.date) as date
                                         FROM cholesterol, users
-                                        WHERE users.user_id = ?`, 
-                                        [user_id]);
+                                        WHERE users.user_id = ?`,
+                        [user_id]);
                 } catch (error) {
                     console.log(error);
                 }
@@ -76,8 +31,7 @@ export default class {
             // console.log(cholesterol);
 
             let blood_pressure = Object();
-            if (typeof user_id == "string")
-            {
+            if (typeof user_id == "string") {
                 try {
                     blood_pressure = await dao.all(`
                                         SELECT
@@ -85,8 +39,8 @@ export default class {
                                             blood_pressure.diastolic as diastolic,
                                             date(blood_pressure.date) as date
                                         FROM blood_pressure, users
-                                        WHERE users.user_id = ?`, 
-                                        [user_id]);
+                                        WHERE users.user_id = ?`,
+                        [user_id]);
                 } catch (error) {
                     console.log(error);
                 }
@@ -100,16 +54,15 @@ export default class {
 
 
             let blood_sugar = Object();
-            if (typeof user_id == "string")
-            {
+            if (typeof user_id == "string") {
                 try {
                     blood_sugar = await dao.all(`
                                         SELECT
                                             blood_sugar.level as level,
                                             date(blood_sugar.date) as date
                                         FROM blood_sugar, users
-                                        WHERE users.user_id = ?`, 
-                                        [user_id]);
+                                        WHERE users.user_id = ?`,
+                        [user_id]);
                 } catch (error) {
                     console.log(error);
                 }
@@ -122,8 +75,7 @@ export default class {
             // console.log(blood_sugar);
 
             let weight = Object();
-            if (typeof user_id == "string")
-            {
+            if (typeof user_id == "string") {
                 try {
                     weight = await dao.all(`
                                         SELECT
@@ -131,8 +83,8 @@ export default class {
                                             date(weight.date) as date,
                                             users.height
                                         FROM weight, users
-                                        WHERE users.user_id = ?`, 
-                                        [user_id]);
+                                        WHERE users.user_id = ?`,
+                        [user_id]);
                 } catch (error) {
                     console.log(error);
                 }
@@ -146,21 +98,23 @@ export default class {
 
             let bmi: any[] = [];
             let height = weight[0].height;
-            
+
             for (const entry of weight) {
                 console.log(entry);
-                let value = Math.round(entry.level / (height / 100) / (height / 100) *100) / 100;
-                let obj = {level: value,
+                let value = Math.round(entry.level / (height / 100) / (height / 100) * 100) / 100;
+                let obj = {
+                    level: value,
                     date: entry.date
                 };
-                bmi.push(obj);                
+                bmi.push(obj);
             }
-            
-            let data = {"cholesterol": cholesterol,
-                        "blood_pressure": blood_pressure,
-                        "blood_sugar": blood_sugar,
-                        "bmi": bmi
-                };
+
+            let data = {
+                "cholesterol": cholesterol,
+                "blood_pressure": blood_pressure,
+                "blood_sugar": blood_sugar,
+                "bmi": bmi
+            };
             console.log("sending data");
             console.log(data);
             res.json(data);
@@ -169,6 +123,4 @@ export default class {
             console.log(err);
         }
     }
-    
 }
-
