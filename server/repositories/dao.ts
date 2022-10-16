@@ -99,32 +99,32 @@ export default class {
                 )`;
             db.run(createCholesterolTable);
             const createBloodPressureTable = `CREATE TABLE IF NOT EXISTS 
-            blood_pressure (
-                blood_pressure_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                systolic INTEGER,
-                diastolic INTEGER,
-                date DATE,
-                user_id INTEGER,
-                FOREIGN KEY (user_id) REFERENCES users(user_id)
-            )`;
+                blood_pressure (
+                    blood_pressure_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                    systolic INTEGER,
+                    diastolic INTEGER,
+                    date DATE,
+                    user_id INTEGER,
+                    FOREIGN KEY (user_id) REFERENCES users(user_id)
+                )`;
             db.run(createBloodPressureTable);
             const createBloodSugarTable = `CREATE TABLE IF NOT EXISTS 
-            blood_sugar (
-                blood_sugar_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                level INTEGER,
-                date DATE,
-                user_id INTEGER,
-                FOREIGN KEY (user_id) REFERENCES users(user_id)
-            )`;
+                blood_sugar (
+                    blood_sugar_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                    level INTEGER,
+                    date DATE,
+                    user_id INTEGER,
+                    FOREIGN KEY (user_id) REFERENCES users(user_id)
+                )`;
             db.run(createBloodSugarTable);
             const createWeightTable = `CREATE TABLE IF NOT EXISTS 
-            weight (
-                weight_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                level INTEGER,
-                date DATE,
-                user_id INTEGER,
-                FOREIGN KEY (user_id) REFERENCES users(user_id)
-            )`;
+                weight (
+                    weight_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                    level INTEGER,
+                    date DATE,
+                    user_id INTEGER,
+                    FOREIGN KEY (user_id) REFERENCES users(user_id)
+                )`;
             db.run(createWeightTable);
 
             
