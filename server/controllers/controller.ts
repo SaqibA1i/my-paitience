@@ -52,7 +52,7 @@ export default class {
             console.log(req.query);
             
             console.log("finding appointments");
-            let appointments;
+            let appointments: any;
             let user_id = req.query.user_id;
             if (typeof user_id == "string")
             {
@@ -76,8 +76,22 @@ export default class {
                 console.log("no appointments found");
                 return res.status(404).send(appointments);
             }
+
+            let formatted: Object[] = [];
+
+            for (const appt of appointments) {
+                console.log(appt);
+                let fTime = dt.formatTime(appt.time);
+                let obj = {date: appt.date,
+                    time: fTime,
+                    name: appt.name,
+                    phone: appt.phone,
+                    img_src: appt.img_src
+                };
+                formatted.push(obj);                
+            }
             
-            let data = {"appointments": appointments};
+            let data = {"appointments": formatted};
             console.log("sending data");
             console.log(data)
             res.json(data);

@@ -1,8 +1,8 @@
 
 export default class {
     static formatTime(time: string) {
-        console.log(time);
-        console.log(typeof time);
+        // console.log(time);
+        // console.log(typeof time);
         if (time == "09:00:00") {
             return "9:00 AM";
         } else if (time == "10:00:00") {
