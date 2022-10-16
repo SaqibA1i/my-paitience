@@ -111,4 +111,20 @@ export default class {
             console.log(err);
         }
     }
+
+    static async deleteAppointment(req: Request, res: Response, next: Function) {
+        console.log("Delete appointment post request");
+        console.log(req.body);
+        try {
+            let ret = await dao.run(`DELETE FROM appointments WHERE 
+                    appointment_id = ?
+                `, [req.body.appointment_id]
+            );
+        } catch (err) {
+            console.log(err);
+            res.sendStatus(400);
+        }
+        res.sendStatus(200);
+
+    }
 }

@@ -10,11 +10,13 @@ router.get("/home", Controller.getHomebyUserID);
 // Appointment routes
 router.get("/appt", appointmentController.getAppointmentbyUserID);
 router.post("/appt/add", appointmentController.addAppointment);
+router.post("/appt/delete", appointmentController.deleteAppointment);
 router.get("/getDoctors", appointmentController.getDoctorsFromAppts);
 
 // Prescription routes
 router.get("/prescriptions", prescriptionController.getPrescriptionbyUserID);
 router.post("/prescriptions/add", prescriptionController.addPrescription);
+router.post("/prescriptions/delete", prescriptionController.deletePrescription);
 
 // Montitoring Routes
 router.get("/monitoring", Controller.getMonitoringbyUserID);

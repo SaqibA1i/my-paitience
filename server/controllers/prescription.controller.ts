@@ -87,4 +87,19 @@ export default class {
         }
         res.sendStatus(200);
     }
+
+    static async deletePrescription(req: Request, res: Response, next: Function) {
+        console.log("Delete prescription post request");
+        console.log(req.body);
+        try {
+            let ret = await dao.run(`DELETE FROM prescriptions WHERE 
+                    prescription_id = ?
+                `, [req.body.prescription_id]
+            );
+        } catch (err) {
+            console.log(err);
+            res.sendStatus(400);
+        }
+        res.sendStatus(200);
+    }
 }
