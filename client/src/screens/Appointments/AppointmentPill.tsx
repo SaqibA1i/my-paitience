@@ -14,7 +14,7 @@ const StyledVBox = styled(VBox)`
 const AppointmentPill = ({ appointment }: { appointment: Appointment }) => {
   return (
     <StyledVBox>
-      <H4 style={{ color: "#156350" }}>{appointment.time} AM</H4>
+      <H4 style={{ color: "#156350" }}>{appointment.time}</H4>
       <H4 style={{ color: "white", fontWeight: 500, fontSize: "17px" }}>
         Meeting with {appointment.name}
       </H4>

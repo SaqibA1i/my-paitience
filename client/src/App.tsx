@@ -6,8 +6,8 @@ import Home from "./screens/Home";
 import Appointments from "./screens/Appointments";
 import CarouselWrapper from "./wrappers/CarouselWrapper";
 import BottomNavbar from "./components/BottomNavbar";
-import Perscriptions from "./screens/Perscriptions";
-import MyHealth from "./screens/Perscriptions/MyHealth";
+import Perscription from "./screens/Perscriptions";
+import MyHealth from "./screens/MyHealth";
 import Navbar from "./components/Navbar";
 import Modal from "./components/Modal";
 
@@ -19,7 +19,7 @@ function App() {
       <CarouselWrapper>
         <Appointments />
         <Home />
-        <Perscriptions />
+        <Perscription />
         <MyHealth />
       </CarouselWrapper>
       <BottomNavbar />

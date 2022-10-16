@@ -1,4 +1,4 @@
-import { Screen } from "../../../styledComponents/Screen";
+import { Screen } from "../../styledComponents/Screen";
 
 const MyHealth = () => {
   return (
