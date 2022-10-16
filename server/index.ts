@@ -29,7 +29,9 @@ app.listen(port, () => {
 });
 
 //  Script to setup sqlite DB in memory //
+dao.cleanDatabase();
 dao.setupDbForDev();
+dao.insertItems();
 ////////////////////////////////////
 
 app.use('/api', routes);
