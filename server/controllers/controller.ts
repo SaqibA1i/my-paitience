@@ -1,6 +1,7 @@
 import {Request, Response} from 'express';
 import Doctor from "../models/doctor";
 import dao from "../repositories/dao";
+import dt from "../utils/dateTime";
 
 
 
@@ -182,13 +183,13 @@ export default class {
                     console.log(typeof final_prescription);
                     if (prescription.medication == final_prescription.medication) {
                         console.log(final_prescription);
-                        final_prescription.time.push(prescription.time);
+                        final_prescription.time.push(dt.formatTime(prescription.time));
                         appended = 1;
                     }
                 }
                 if (!appended) {
                     let arr:any = [];
-                    arr.push(prescription.time);
+                    arr.push(dt.formatTime(prescription.time));
                     let obj = {medication: prescription.medication,
                         time: arr,
                         instructions: prescription.instructions,
@@ -206,6 +207,10 @@ export default class {
         catch (err) {
             console.log(err);
         }
+    }
+    
+    formatTime(time:string) {
+
     }
 
     static async getMonitoringbyUserID(req: Request, res: Response, next: Function) {
