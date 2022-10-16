@@ -20,7 +20,7 @@ export type CarouselType = {
 
 export const carousel = createSlice({
     name: "CAROUSEL",
-    initialState: { screen: SCREEN_INDEX.HOME } as CarouselType,
+    initialState: { screen: SCREEN_INDEX.APOINTMENTS } as CarouselType,
     reducers: {
         updateScreen: (state, action: PayloadAction<SCREEN_INDEX>) => {
             const { payload: screen } = action;
