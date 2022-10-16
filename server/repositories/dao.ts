@@ -146,7 +146,7 @@ export default class {
                 VALUES 
                     ('patient@gmail.com', 'password', 'John', 'Smith', 170, 1)`;
             db.run(insertUsers);
-            console.log("insert users done")
+            // console.log("insert users done")
 
             const insertAppointments = `INSERT INTO appointments (date, user_id,
                 doctor_id) 

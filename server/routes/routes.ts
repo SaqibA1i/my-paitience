@@ -1,12 +1,16 @@
 import Controller from '../controllers/controller';
+import appointmentController from '../controllers/appointment.controller';
 import * as express from 'express';
 const router = express.Router();
 
 router.get("/home", Controller.getHomebyUserID);
-router.get("/appt", Controller.getAppointmentbyUserID);
-router.post("/appt/add", Controller.addAppointment);
-router.get("/getDoctors", Controller.getDoctorsFromAppts);
+// Appointment routes
+router.get("/appt", appointmentController.getAppointmentbyUserID);
+router.post("/appt/add", appointmentController.addAppointment);
+router.get("/getDoctors", appointmentController.getDoctorsFromAppts);
+// Prescription routes
 router.get("/prescriptions", Controller.getPrescriptionbyUserID);
+// Montitoring Routes
 router.get("/monitoring", Controller.getMonitoringbyUserID);
 
 
