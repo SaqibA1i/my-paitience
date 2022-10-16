@@ -1,0 +1,2 @@
+The cleaned dataset used to train our logistic regression model was available to us from Kaggle: https://www.kaggle.com/datasets/alexteboul/heart-disease-health-indicators-dataset?resource=download which is a cleaned version of https://www.kaggle.com/datasets/cdc/behavioral-risk-factor-surveillance-system. 
+Both of these dataset are CC0: Public Domain licensed. 
