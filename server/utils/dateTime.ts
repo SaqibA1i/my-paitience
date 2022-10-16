@@ -4,7 +4,7 @@ export default class {
         // console.log(time);
         // console.log(typeof time);
         if (time == "09:00:00") {
-            return "9:00 AM";
+            return "09:00 AM";
         } else if (time == "10:00:00") {
             return "10:00 AM";
         } else if (time == "11:00:00") {
