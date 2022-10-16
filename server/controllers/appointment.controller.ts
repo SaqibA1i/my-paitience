@@ -58,21 +58,6 @@ export default class {
         }
     }
 
-    static async addAppointment(req: Request, res: Response, next: Function) {
-        console.log("Add appt post request");
-        console.log(req.body);
-        try {
-        let ret = await dao.run(`INSERT INTO appointments (date, user_id,
-            doctor_id) VALUES (?, ?, ?)
-        `, [req.body.date, req.body.user_id, req.body.doctor_id]);
-        console.log(ret);
-        } catch (err) {
-            console.log(err);
-            res.sendStatus(400);
-        }
-        res.sendStatus(200);
-    }
-
     static async getDoctorsFromAppts(req: Request, res: Response, next: Function) {
         try {
             console.log("get doctor (byUserID) called");
@@ -110,6 +95,21 @@ export default class {
         catch (err) {
             console.log(err);
         }
+    }
+
+    static async addAppointment(req: Request, res: Response, next: Function) {
+        console.log("Add appt post request");
+        console.log(req.body);
+        try {
+        let ret = await dao.run(`INSERT INTO appointments (date, user_id,
+            doctor_id) VALUES (?, ?, ?)
+        `, [req.body.date, req.body.user_id, req.body.doctor_id]);
+        console.log(ret);
+        } catch (err) {
+            console.log(err);
+            res.sendStatus(400);
+        }
+        res.sendStatus(200);
     }
 
     static async deleteAppointment(req: Request, res: Response, next: Function) {
