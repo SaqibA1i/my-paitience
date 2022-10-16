@@ -12,23 +12,23 @@ export default class {
         } else if (time == "12:00:00") {
             return "12:00 PM";
         } else if (time == "13:00:00") {
-            return "1:00 PM";
+            return "01:00 PM";
         } else if (time == "14:00:00") {
-            return "2:00 PM";
+            return "02:00 PM";
         } else if (time == "15:00:00") {
-            return "3:00 PM";
+            return "03:00 PM";
         } else if (time == "16:00:00") {
-            return "4:00 PM";
+            return "04:00 PM";
         } else if (time == "17:00:00") {
-            return "5:00 PM";
+            return "05:00 PM";
         } else if (time == "18:00:00") {
-            return "6:00 PM";
+            return "06:00 PM";
         } else if (time == "19:00:00") {
-            return "7:00 PM";
+            return "07:00 PM";
         } else if (time == "20:00:00") {
-            return "8:00 PM";
+            return "08:00 PM";
         } else if (time == "21:00:00") {
-            return "9:00 PM";
+            return "09:00 PM";
         } else {
             return "9:00 PM";
         }
