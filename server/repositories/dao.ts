@@ -151,8 +151,8 @@ export default class {
             const insertAppointments = `INSERT INTO appointments (date, user_id,
                 doctor_id) 
                 VALUES 
-                    ('2022-10-17 10:00:00.000', '1', '1'),
-                    ('2022-10-19 10:00:00.000', '1', '2')
+                    ('2022-10-17 13:00:00.000', '1', '1'),
+                    ('2022-10-19 14:00:00.000', '1', '2')
                     
             `;
             db.run(insertAppointments);
